@@ -22,15 +22,20 @@ def show_records():
 # Основная функция
 def main():
     parser = argparse.ArgumentParser(description="Отслеживание действий")
-    parser.add_argument("command", choices=["add", "show"], help="Команда для выполнения")
-    parser.add_argument("-d", "--description", help="Текст записи")
-    parser.add_argument("-c", "--category", help="Категория записи")
-    parser.add_argument("-t", "--time", help="Потраченное время в часах")
+    subparsers = parser.add_subparsers(dest="command", help="Команда для выполнения")
+    add_parser = subparsers.add_parser("add", help="Добавить действие")
+    add_parser.add_argument("-d", "--description", required=True, help="Текст записи")
+    add_parser.add_argument("-c", "--category", choices=["RAMS", "MEET", "WORK", "PLAN", "TARO"], required=True, help="Категория записи")
+    add_parser.add_argument("-t", "--time", type=int, required=True, help="Потраченное время в часах")
+    show_parser = subparsers.add_parser("show", help="Показать действия")
 
     args = parser.parse_args()
 
-    if args.command == "add" and args.description:
-        add_record(args.description, args.category, args.time)
+    if args.command == "add":
+        if args.description and args.category and args.time:
+            add_record(args.description, args.category, args.time)
+        else:
+            print(f"Описание '{args.description}' или категория '{args.category}' или время '{args.time}' не были указаны для комманды 'add'")
     elif args.command == "show":
         show_records()
     else:
