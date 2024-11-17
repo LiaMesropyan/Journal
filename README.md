@@ -1,6 +1,6 @@
 # How to use this program
-- run prgram as web page
-- got to main page with 2 option  - ADD, SHOW
+- run prgram as console
+- there are a 2 option  - ADD, SHOW
 - choose option "ADD"
 - open new window where you can fill and choose information
 - fill information and close the window
