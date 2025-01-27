@@ -25,7 +25,7 @@ def main():
     subparsers = parser.add_subparsers(dest="command", help="Команда для выполнения")
     add_parser = subparsers.add_parser("add", help="Добавить действие")
     add_parser.add_argument("-d", "--description", required=True, help="Текст записи")
-    add_parser.add_argument("-c", "--category", choices=["RAMS", "MEET", "WORK", "PLAN", "TARO"], required=True, help="Категория записи")
+    add_parser.add_argument("-c", "--category", choices=["RAMS", "MEET", "WORK", "PLAN", "TARO", "CODING", "READING"], required=True, help="Категория записи")
     add_parser.add_argument("-t", "--time", type=int, required=True, help="Потраченное время в часах")
     show_parser = subparsers.add_parser("show", help="Показать действия")
 
