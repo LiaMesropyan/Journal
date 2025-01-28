@@ -4,10 +4,16 @@ from datetime import datetime
 # Список для хранения действий
 records = []
 
+def write_to_file(description, category, time):
+    with open("records.txt", "a", encoding="utf-8") as file:
+        timestamp = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
+        line = f"[{timestamp}] {time}h {category} {description}\n"
+        file.write(line)
 # Функция для добавления действия
 def add_record(description, category, time):
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     records.append({"record": description, "timestamp": timestamp})
+    write_to_file(description, category, time)
     print(f"'{description}' добавлено в {timestamp} with category {category} and time {time}")
 
 # Функция для отображения действий
